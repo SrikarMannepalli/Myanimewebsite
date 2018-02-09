@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Thumb nail test</title>
+	<style type="text/css">
+		#span{
+			visibility: hidden;
+			display: block;
+			position: absolute;		
+		}
+
+	</style>
+</head>
+<body>
+<div id="player">
+<video id="vid" style="width: 620px;height: auto;" controls="" src="../../Souleater/Soul_Eater_(Sub)_Episode_001.mp4"></video>
+<div  id ="bar" style="background: linear-gradient(to right, rgb(85, 0, 0) 0%, rgb(0, 0, 0) 0%);width: 620px;height: 10px;border: 2px solid black;">
+</div>
+<span id="span" style="left: 0px; top: 260px;">
+<img id="thumb" style="width: 160px; height: 78px;" src=""></img>
+</span>
+<p id="test"></p>
+<script type="text/javascript">
+	var video = document.querySelector('#vid');
+	var bar = document.querySelector('#bar');
+	var thum = document.querySelector('#thumb');
+	var span = document.querySelector('#span');
+	var test = document.querySelector('#test');
+	var resp = null;
+	function loadJSON(filename) {
+
+		var xobj = new XMLHttpRequest();
+		xobj.overrideMimeType("application/json");
+		xobj.open('GET', filename, true);
+		xobj.onreadystatechange = function() {
+			if (xobj.readyState == 4 && xobj.status == "200") {
+				Jsoname(xobj.responseText);
+			}
+		};
+		xobj.send(null);
+
+	}
+	
+	function Jsoname(response){
+		resp = JSON.parse(response);
+	}
+	loadJSON('tot.json');
+	function play(){
+	if(video.paused){
+		video.play();
+	}else{
+		video.pause();
+		}
+	}
+	function updateTime(e) {
+		//console.log(ev.offsetX , ev.offsetY);
+		video.play();
+		video.currentTime = (e.offsetX / parseInt(bar.style.width) * video.duration) ;
+		console.log("click!","Time: ",video.currentTime);
+	}
+	function showSpan(){
+		span.style.visibility = "visible";
+		
+	}
+	function pad(n, width, z) {
+  		z = z || '0';
+  		n = n + '';
+  		return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+	}
+  	function updatebar() {
+    	var p = video.currentTime/video.duration*100;
+    	bar.style.background = "linear-gradient(to right, #500 "+p+"%, #000 "+p+"%)";
+ 	}
+	function hideSpan(){
+		span.style.visibility = "hidden";
+	}
+	//MAIN SPAN Function is showThumb
+	function showThumb(e) {
+		var percent = (e.offsetX / parseInt(bar.style.width) * 100);
+		var p = percent;
+		var n = Math.floor( ( resp.tot -1 ) * p/100 + 1);
+		console.log(p,n);
+		var w = parseInt(bar.style.width);
+		span.style.left = e.offsetX - thum.width/2 + 'px';
+		if(n>0){
+			thum.src = resp.name + pad(n,3) + '.' + resp.exten;
+		}
+	}
+	function ls(){
+	for(i in imgaes){
+		$.ajax({
+    	type: 'HEAD',
+   	 	url: '',
+    	success: function() {
+       // alert('Page found.');
+		suces = 1;
+   	 	},  
+    	error: function() {
+       // alert('Page not found.');
+    	}
+		});
+	}
+	}
+	video.addEventListener('click',play,false);
+	video.addEventListener('timeupdate',updatebar,false);
+	bar.addEventListener('click',(e) => updateTime(e));
+	bar.addEventListener('mousemove',(e) => showThumb(e),false);
+	bar.addEventListener('mouseout',hideSpan,false);
+	bar.addEventListener('mouseover',showSpan,false);
+	
+</script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title>video-resize demo</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="shortcut icon" href="assets/images/icon.ico">
+  </head>
+  <body>
+    <nav>
+      <h3>
+        <a href="https://github.com/robertjanes/video-resize">video-resize <span style="font-weight:normal;">demo</span></a>
+      </h3>
+    </nav>
+    <div class="container">
+      <div id="airhorn"></div>
+    </div>
+    <script src="../video-resize.min.js"></script>
+    <script>
+      var airhorn = vr.video({
+        element: '#airhorn',
+        align: {x: 0.5, y: 0.5},
+        sources: 'assets/videos/airhorn.mp4',
+        poster: 'assets/images/airhorn.jpg',
+        mobilePoster: 'assets/images/airhorn-mobile.jpg',
+        autoplay: true,
+        loop: true,
+        mute: true,
+        mobileBreak: 480,
+      });
+      airhorn.init();
+    </script>
+  </body>
+</html>
