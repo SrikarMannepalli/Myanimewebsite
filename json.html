@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>JavaScript - read JSON from URL</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        var response = "";
+    $.getJSON('https://raw.githubusercontent.com/phanirithvij/Temp2/master/tot.json', (data) => {
+        console.log(data,"YES");
+        response = data.responseText;
+	console.log('WOrks');
+    });
+	
+    </script>
+</head>
+
+<body>
+    <div class="mypanel"></div>
+</body>
+</html>
