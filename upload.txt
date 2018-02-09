@@ -1,1 +1,12 @@
 https://cdn3.iconfinder.com/data/icons/glypho-generic-icons/64/action-upload-alt-512.png
+
+
+
+perl -e'print q|{"foo":"あい","bar":1234567890000000000000000}|' |\
+             json_pp -f json -t dumper -json_opt pretty,utf8,allow_bignum 
+ |
+ |
+ |
+ |
+\?/
+## Checkwhatitis ..
