@@ -1,3 +1,0 @@
-# Myanimewebsite
-
-got into otherwebsites
