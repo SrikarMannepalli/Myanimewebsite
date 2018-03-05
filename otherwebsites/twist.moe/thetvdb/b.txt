@@ -1,0 +1,290 @@
+token now eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg
+FILE empty.js
+var curl = require('curlconverter');
+
+var curlinput = "";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE episodesSummaryBySeriesId.js
+var curl = require('curlconverter');
+
+var curlinput = "curl -X GET --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/series/81797/episodes/summary'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE getAbsoluteOrSeasonalEpisode.js
+var curl = require('curlconverter');
+
+//absoluteNumber is enough
+//
+//airedSeason will list all of that season's episodes
+//
+//page=1 can be used
+//
+//if this url is used
+//
+//the episode number is relative to the particular season
+//
+//https://api.thetvdb.com/series/81797/episodes/query?airedSeason=3&airedEpisode=1
+//
+//
+//IMDB ID CAN ALSO BE USED
+//
+//https://api.thetvdb.com/series/81797/episodes/query?airedSeason=3&airedEpisode=1&imdbId=333333
+
+
+var curlinput = "curl -X GET --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/series/81797/episodes/query?absoluteNumber=42&airedSeason=3'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE getEpisodebyId.js
+var curl = require('curlconverter');
+
+//page=4 parameter can be modified
+
+
+var curlinput = "curl -X GET --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/series/81797/episodes?page=4'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE getEpisodesBySeriesId.js
+
+
+
+FILE g.js
+var request = require('request');
+
+var headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+};
+
+var dataString = '{"apikey": "DA9E813C65A0D457","userkey": "1ED0DA3162F6EEF0","username": "phanirithvij"}';
+
+var options = {
+    url: 'https://api.thetvdb.com/login',
+    method: 'POST',
+    headers: headers,
+    body: dataString
+};
+
+function callback(error, response, body) {
+    if (!error && response.statusCode == 200) {
+        console.log(body);
+    }
+}
+
+request(options, callback);
+
+
+
+
+FILE login.js
+var curl = require('curlconverter');
+
+var curlinput = "curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\"apikey\": \"DA9E813C65A0D457\",\"userkey\": \"1ED0DA3162F6EEF0\",\"username\": \"phanirithvij\"}' 'https://api.thetvdb.com/login'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE refreshtoken.js
+var curl = require('curlconverter');
+
+var curlinput = "curl -X GET --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/refresh_token'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE searchSeriesById.js
+var curl = require('curlconverter');
+
+//HERE if the url is
+//
+//https://api.thetvdb.com/series/81797/actors
+//
+//the result would be actors
+//
+//
+
+
+
+
+
+
+var curlinput = "curl -X GET --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/series/81797'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE searchSeries.js
+var curl = require('curlconverter');
+
+//searches can be made using 
+//
+//name
+//imdbId
+//zap2itId
+//
+//ONLY one of them
+//
+//eg
+//
+//(HERE I made all the requests but only one of them is needed)
+//
+//curl -X GET --header 'Accept: application/json' --header 'Accept-Language: en' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MTk5OTg4MzgsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MTk5MTI0MzgsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.BGuk8oZ-fQEIIvKDNU7-hZp52cBPcpYYQ0P3WyYVNPGgx0DPsP7kfyQRgscYlccklcZPu6ONci0uh5Mkbb_kMlHzLymEWEnwQmKwtHbWdQ0rn_ZkZG9qePI8O0A22q-rtYlbRBAGOToHwi1C0lWXyBGRJo7Ti2HaagauOKc7kJYKH9aEkt_RsDrxNuv7qgQ_9ME0vA03VdMQFGQVTE2bu6KORUZl41UXf0TH1J13uC1peh_g_7jcPbs-CZ48LWTO1_flVaDEtkc1WZtffpavckAD46ppWEzfzGc5A7Jg28HvIgy2kcjPpyxD4J9jqLLALpMqxDRV4GFfGfTXf-wyKg' 'https://api.thetvdb.com/search/series?name=one%20piece&imdbId=t456345&zap2itId=634y'
+//
+
+var curlinput = "curl -X GET --header 'Accept: application/json' --header 'Accept-Language: en' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/search/series?name=one%20piece'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE searchSeriesParams.js
+var curl = require('curlconverter');
+
+//THIS IS USELESS 
+//
+//THIS JUST RETURNS AVAILABLE PARAMETERS
+//
+//ie.
+//
+//zap2itId
+//imdbId
+//name
+
+var curlinput = "curl -X GET --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/search/series/params'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE seriesIdFilter.js
+var curl = require('curlconverter');
+
+//here in the link
+//
+//
+//https://api.thetvdb.com/series/81797/filter?keys=status%2Cgenre%2CairsDayOfWeek%2CimdbId%2CairsTime%2Crating%2CsiteRatingCount%2CfirstAired%2Cnetwork%2Cruntime%2Coverview%2ClastUpdated%2Cadded%2CaddedBy%2Cid%2CseriesName%2Caliases%2CnetworkId%2Cbanner%2CseriesId%2Czap2itId%2CsiteRating
+//
+//
+//only one or more of the filters can be used
+//
+//eg
+//
+//
+//https://api.thetvdb.com/series/81797/filter?keys=status%2Cgenre
+//
+//
+
+var curlinput = "curl -X GET --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/series/81797/filter?keys=status%2Cgenre%2CairsDayOfWeek%2CimdbId%2CairsTime%2Crating%2CsiteRatingCount%2CfirstAired%2Cnetwork%2Cruntime%2Coverview%2ClastUpdated%2Cadded%2CaddedBy%2Cid%2CseriesName%2Caliases%2CnetworkId%2Cbanner%2CseriesId%2Czap2itId%2CsiteRating";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE seriesIdFilterParams.js
+var curl = require('curlconverter');
+
+var curlinput = "curl -X GET --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/series/81797/filter/params'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE seriesIdImages.js
+var curl = require('curlconverter');
+
+//Only 
+
+
+var curlinput = "curl -X GET --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/series/81797/images'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE seriesIdImagesQuery.js
+var curl = require('curlconverter');
+
+var curlinput = "curl -X GET --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/series/81797/images/query?keyType=fanart'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE seriesIdImagesQueryParams.js
+var curl = require('curlconverter');
+
+var curlinput = "curl -X GET --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/series/81797/images/query/params'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE userFavoritesADDByID.js
+var curl = require('curlconverter');
+
+var curlinput = "curl -X PUT --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/user/favorites/305288'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE userFavoritesDELETEBySeriesID.js
+var curl = require('curlconverter');
+
+var curlinput = "curl -X DELETE --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/user/favorites/305288'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE userFavorites.js
+var curl = require('curlconverter');
+
+var curlinput = "curl -X GET --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/user/favorites'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
+FILE user.js
+var curl = require('curlconverter');
+
+var curlinput = "curl -X GET --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjAzMzMzOTQsImlkIjoiUm9vdHdvcmxkIiwib3JpZ19pYXQiOjE1MjAyNDY5OTQsInVzZXJpZCI6NDk5NzU2LCJ1c2VybmFtZSI6InBoYW5pcml0aHZpaiJ9.hfV1z659hdF2EGtUSMYvksZfOwxz7emG6Q3B_WtDQZwyBsLN9DnffLCUxPEfTSiSwaB1oitiWM6RxprfojHpsiJnUwqNDh5D93gPvMJZookmT_d9yrWNcm1gF5uDo9-ow95qA0XeoZk_D7h4KnjsrIYOC11NmzQmzQATeQlENfkUu_d0B1CuJyuy2dOu4CmHU_gHjiiKoXDB7xUGHfp1isgJmJMjBUfyRcIaeKa6hwYsGC9Z55WLy_QNMW10mryvZQcwS8nje3yOGSJt-DIOhielC8vavfHw5kPZzHT_s5CWYgDoLRApS-n9ch7zWGGmX2Q8wwqawviLoLwK_APalg' 'https://api.thetvdb.com/user'";
+
+var e = curl.toNode(curlinput);
+console.log(e);
+
+
+
