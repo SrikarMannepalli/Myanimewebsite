@@ -47,6 +47,12 @@ oid=$(echo $anid)
 var=$(echo $slug | tr '-' '_')
 echo "var $var = ["
 echo "var $var = [" > out$oid.json
+for i in ${thumb[*]}
+do
+	x=$((x+1))
+	thumbnomd[$x]=$(echo $i | sed 's/\.md\.jpg$/\.jpg/')
+done
+x=0
 for i in ${id[*]}
 do
 	x=$((x+1))
@@ -54,8 +60,8 @@ do
 	echo '{' >> out$oid.json
 	echo \"id\":$i ,
 	echo \"id\":$i , >> out$oid.json
-       	echo \"thumb\":\"${thumb[$x]}\"
-       	echo \"thumb\":\"${thumb[$x]}\" >> out$oid.json
+       	echo \"thumb\":\"${thumbnomd[$x]}\"
+       	echo \"thumb\":\"${thumbnomd[$x]}\" >> out$oid.json
 	if [[ $totids != $x ]]
 	then
 	echo '},'
