@@ -1,0 +1,15 @@
+{
+  "name": "simkl",
+  "version": "1.0.0",
+  "description": "Simkl",
+  "main": "app.js",
+  "dependencies": {
+    "request": "^2.83.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Phani Rithvij",
+  "license": "ISC"
+}
