@@ -1,0 +1,29 @@
+[
+    {
+        "ids": {
+            "simkl_id": 478386,
+            "slug": "one-punch-man"
+        },
+        "title": "One Punch Man",
+        "type": "tv",
+        "year": 2015
+    },
+    {
+        "ids": {
+            "simkl_id": 525392,
+            "slug": "one-punch-man-road-to-hero"
+        },
+        "title": "One Punch Man: Road to Hero",
+        "type": "ova",
+        "year": 2015
+    },
+    {
+        "ids": {
+            "simkl_id": 620039,
+            "slug": "one-punch-man-2"
+        },
+        "title": "One Punch Man 2",
+        "type": "tv",
+        "year": 1970
+    }
+]

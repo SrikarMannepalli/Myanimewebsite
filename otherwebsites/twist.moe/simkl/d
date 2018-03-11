@@ -1,0 +1,92 @@
+[
+    {
+        "ids": {
+            "simkl_id": 38636,
+            "slug": "one-piece"
+        },
+        "title": "One Piece",
+        "type": "tv",
+        "year": 1999
+    },
+    {
+        "ids": {
+            "simkl_id": 519396,
+            "slug": "one-piece-film-gold"
+        },
+        "title": "One Piece Film: Gold",
+        "type": "movie",
+        "year": 2016
+    },
+    {
+        "ids": {
+            "simkl_id": 36580,
+            "slug": "one-piece"
+        },
+        "title": "One Piece",
+        "type": "movie",
+        "year": 2000
+    },
+    {
+        "ids": {
+            "simkl_id": 40664,
+            "slug": "one-piece-film-strong-world"
+        },
+        "title": "One Piece Film: Strong World",
+        "type": "movie",
+        "year": 2009
+    },
+    {
+        "ids": {
+            "simkl_id": 47902,
+            "slug": "one-piece-film-z"
+        },
+        "title": "One Piece Film: Z",
+        "type": "movie",
+        "year": 2012
+    },
+    {
+        "ids": {
+            "simkl_id": 39472,
+            "slug": "one-piece-omatsuri-danshaku-to-himitsu-no-shima"
+        },
+        "title": "One Piece: Omatsuri Danshaku to Himitsu no Shima",
+        "type": "movie",
+        "year": 2005
+    },
+    {
+        "ids": {
+            "simkl_id": 38942,
+            "slug": "one-piece-the-movie-dead-end-no-bouken"
+        },
+        "title": "One Piece The Movie: Dead End no Bouken",
+        "type": "movie",
+        "year": 2003
+    },
+    {
+        "ids": {
+            "simkl_id": 41361,
+            "slug": "one-piece-the-movie-episode-of-chopper-plus---fuyu-ni-saku-kiseki-no-sakura"
+        },
+        "title": "One Piece The Movie: Episode of Chopper Plus - Fuyu ni Saku, Kiseki no Sakura",
+        "type": "movie",
+        "year": 2008
+    },
+    {
+        "ids": {
+            "simkl_id": 37804,
+            "slug": "one-piece-romance-dawn---bouken-no-yoake"
+        },
+        "title": "One Piece: Romance Dawn - Bouken no Yoake",
+        "type": "ova",
+        "year": 2012
+    },
+    {
+        "ids": {
+            "simkl_id": 38586,
+            "slug": "one-piece-special-romance-dawn-story"
+        },
+        "title": "One Piece Special: Romance Dawn Story",
+        "type": "movie",
+        "year": 2008
+    }
+]
