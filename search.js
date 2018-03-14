@@ -1,7 +1,7 @@
   //Search functions
   //search.js
   
-	const suggestions = document.querySelector('.suggestions');
+  const suggestions = document.querySelector('.suggestions');
   const seart = document.querySelector('[name=anisearch]');
   const sears = document.querySelector('[name=kitssearch]');
   function findMatches(wordToMatch, anime) {
