@@ -1,0 +1,26 @@
+	CORS ALLOWED
+
+
+	NODE MODULE
+https://github.com/wopian/kitsu/tree/master/packages/kitsu
+	JAVASCRIPT FOR BROWSER 
+<script src="https://bundle.run/kitsu@5?name=Kitsu"></script>
+
+//NORMALLY//
+
+	CHARACTER BY ID
+
+https://kitsu.io/api/edge/characters/3554
+
+	CHARACTER IDS BY ANIME ID
+
+https://kitsu.io/api/edge/anime/818/relationships/anime-characters
+
+	CHARACTER IMAGE BY ITS ID
+https://media.kitsu.io/characters/images/51055/original.jpg
+
+	SEARCH BY TEXT {FILTER BY TEXT}
+https://kitsu.io/api/edge/anime?filter[text]=cowboy%20bebop
+
+	FILTER BY GENRES
+https://kitsu.io/api/edge/anime?filter[genres]=adventure
