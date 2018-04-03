@@ -23,16 +23,11 @@ for x in arguments:
     htmlsoup = soup(soup_html , "html.parser")
 
     content = htmlsoup.findAll("tr")
-    for c in content:
-        cor = c.findAll("a")
-        for ass in cor:
-            if "soundtracks" in ass['href']:
-                print("NAME||",str(ass.text))
-                print("URL||",str(ass['href']))
+    cor = htmlsoup.findAll(text=re.compile("album"))
     #content = content.find("table")
-    #print('\n'*25)
-    #print(content)
-    #print(cor)
+    print(content)
+    print('\n'*25)
+    print(cor)
     #content = content.findAll("tr")
     #for item in content:
     #    for val in item.findAll("td"):
