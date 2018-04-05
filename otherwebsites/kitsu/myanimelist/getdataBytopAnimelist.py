@@ -22,7 +22,7 @@ c = conn.cursor()
 c.execute("CREATE TABLE IF NOT EXISTS anime (id INT, name TEXT, description TEXT, imglink TEXT, shortimg TEXT)")
 #c.execute("ALTER TABLE anime ADD shortimg TEXT")
 
-for i in range(0,100,50): #UPTO 14150 is allowed
+for i in range(0,1000,50): #UPTO 14150 is allowed
     curr_url = "https://myanimelist.net/topanime.php?limit=" + str(i)
 
     uclient = ureq(curr_url)
