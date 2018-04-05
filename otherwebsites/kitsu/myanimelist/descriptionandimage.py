@@ -20,8 +20,10 @@ c.execute("SELECT id FROM anime")
 
 for mal_id in c.fetchall():
     
-    c.execute("SELECT imglink FROM anime WHERE id = ?", [mal_id[0]])
-    if c.fetchone()[0] != None:
+    c.execute("SELECT imglink, description FROM anime WHERE id = ?", [mal_id[0]])
+    out = c.fetchone()
+	
+    if out[0] != None and out[1] != None:
         print(mal_id[0])
     else:    
         curr_url = "https://myanimelist.net/anime/" + str(mal_id[0])
@@ -35,9 +37,15 @@ for mal_id in c.fetchall():
 
         #print(str(htmlsoup.find("meta", {"property" : "og:url"})["content"].split("/")[5]))
         print(str(htmlsoup.find("table", {"width" : "100%"}).div.div.a.img["src"]))
-        print(str(htmlsoup.find("span", {"itemprop":"description"}).text))
-        image = str(htmlsoup.find("table", {"width" : "100%"}).div.div.a.img["src"])
-        desc = str(htmlsoup.find("span", {"itemprop":"description"}).text)
+        #print(str(htmlsoup.find("span", {"itemprop":"description"}).text))
+        try:
+            image = str(htmlsoup.find("table", {"width" : "100%"}).div.div.a.img["src"])
+        except Exception:
+            image = None
+        try:
+            desc = str(htmlsoup.find("span", {"itemprop":"description"}).text)
+        except Exception:
+            desc = None
 
         c.execute("UPDATE anime SET imglink = ? , description = ? WHERE id = ?", (image , desc , mal_id[0]))
         conn.commit()
