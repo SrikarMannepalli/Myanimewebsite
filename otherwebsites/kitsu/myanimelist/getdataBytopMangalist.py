@@ -22,28 +22,32 @@ c = conn.cursor()
 c.execute("CREATE TABLE IF NOT EXISTS manga (id INT PRIMARY KEY, name TEXT, description TEXT, imglink TEXT, shortimg TEXT)")
 #c.execute("ALTER TABLE manga ADD shortimg TEXT")
 
-for i in range(0,100,50): #UPTO 46100 is allowed
+for i in range(0,300,50): #UPTO 46100 is allowed
     curr_url = "https://myanimelist.net/topmanga.php?limit=" + str(i)
-
+    print(curr_url)
 
     soup_html = requests.get(curr_url).text
 
     htmlsoup = soup(soup_html , "html.parser")
 
     div = htmlsoup.findAll("tr", {"class" : "ranking-list"})
-    #print("i :", i)
+    print("i :", i)
     for anime in div:
         an = anime.find("td",{"class":"title"})
         url = an.a["href"]
         #print(str(an.a.img['data-src']))
         shortimg = str(an.a.img['data-src'])
-        print(shortimg)
-        mal_id = str(url).split("/")
+        #print(shortimg, url)
+        mal_id = url.split("/")
         #print("mal_id = ", mal_id[4], "name = ", mal_id[5])
-        c.execute("INSERT INTO manga (id, name, shortimg) VALUES (?, ?, ?)" , (mal_id[4], mal_id[5], shortimg))
-        #c.execute("UPDATE anime SET shortimg = ? WHERE id = ?" , (shortimg, mal_id[4]))        
-        conn.commit()
-        #print('\n')
+        c.execute("SELECT * FROM manga WHERE id=?", [mal_id[4]])
+        fetched = c.fetchall()
+        print("Fetched from database", fetched)
+        if fetched == []:
+            c.execute("INSERT INTO manga (id, name, shortimg) VALUES (?, ?, ?)" , (mal_id[4], mal_id[5], shortimg))
+            #c.execute("UPDATE anime SET shortimg = ? WHERE id = ?" , (shortimg, mal_id[4]))        
+            conn.commit()
+            print('INSTERTED', url)
 
 c.execute("SELECT * FROM manga")
 for row in c.fetchall():
