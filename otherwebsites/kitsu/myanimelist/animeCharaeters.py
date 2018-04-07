@@ -13,20 +13,20 @@ malmanga = "https://myanimelist.net/search/prefix.json?type=manga&keyword=boku&v
 malcharacter = "https://myanimelist.net/search/prefix.json?type=character&keyword=boku&v=1"
 maluser = "https://myanimelist.net/search/prefix.json?type=user&keyword=boku&v=1"
 
-conn = sqlite3.connect('manga.db')
+conn = sqlite3.connect('anime.db')
 c = conn.cursor()
 
-c.execute("SELECT id FROM manga")
+c.execute("SELECT id FROM anime")
 
 for mal_id in c.fetchall():
     
-    c.execute("SELECT imglink, description FROM manga WHERE id = ?", [mal_id[0]])
+    c.execute("SELECT imglink, description FROM anime WHERE id = ?", [mal_id[0]])
     out = c.fetchone()
 	
     if out[0] != None and out[1] != None:
         print(mal_id[0])
     else:    
-        curr_url = "https://myanimelist.net/manga/" + str(mal_id[0])
+        curr_url = "https://myanimelist.net/anime/" + str(mal_id[0])
         print("curr_url",curr_url)
 
         resp = requests.get(curr_url)
@@ -46,8 +46,10 @@ for mal_id in c.fetchall():
         except Exception:
             desc = None
 
-        c.execute("UPDATE manga SET imglink = ? , description = ? WHERE id = ?", (image , desc , mal_id[0]))
+        c.execute("UPDATE anime SET imglink = ? , description = ? WHERE id = ?", (image , desc , mal_id[0]))
         conn.commit()
+    
 
 c.close()
+
 conn.close()

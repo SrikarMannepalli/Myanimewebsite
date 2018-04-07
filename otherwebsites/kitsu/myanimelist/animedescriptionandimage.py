@@ -1,4 +1,4 @@
-from urllib.request import urlopen as ureq
+import requests
 from bs4 import BeautifulSoup as soup
 import sqlite3, time
 
@@ -29,9 +29,7 @@ for mal_id in c.fetchall():
         curr_url = "https://myanimelist.net/anime/" + str(mal_id[0])
         print("curr_url",curr_url)
 
-        uclient = ureq(curr_url)
-        soup_html = uclient.read()
-        uclient.close()
+        soup_html = requests.get(curr_url).text
         htmlsoup = soup(soup_html , "html.parser")
 
 
@@ -49,3 +47,6 @@ for mal_id in c.fetchall():
 
         c.execute("UPDATE anime SET imglink = ? , description = ? WHERE id = ?", (image , desc , mal_id[0]))
         conn.commit()
+
+c.close()
+conn.close()

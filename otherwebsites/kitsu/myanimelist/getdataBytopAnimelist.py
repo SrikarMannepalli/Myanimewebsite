@@ -1,4 +1,4 @@
-from urllib.request import urlopen as ureq
+import requests
 from bs4 import BeautifulSoup as soup
 import sqlite3, time
 
@@ -25,9 +25,7 @@ c.execute("CREATE TABLE IF NOT EXISTS anime (id INT PRIMARY KEY, name TEXT, desc
 for i in range(0,1000,50): #UPTO 14150 is allowed
     curr_url = "https://myanimelist.net/topanime.php?limit=" + str(i)
 
-    uclient = ureq(curr_url)
-    soup_html = uclient.read()
-    uclient.close()
+    soup_html = requests.get(curr_url).text
     htmlsoup = soup(soup_html , "html.parser")
 
     div = htmlsoup.findAll("tr", {"class" : "ranking-list"})
@@ -48,3 +46,6 @@ for i in range(0,1000,50): #UPTO 14150 is allowed
 c.execute("SELECT * FROM anime")
 for row in c.fetchall():
     print(row)
+
+c.close()
+conn.close()
