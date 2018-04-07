@@ -1,5 +1,5 @@
 #THIS FILE IS TO GENERATE A LOCAL DATA BASE FROM HTTPS://ANIMEPAHE.COM
-#Argument ID NEEDED
+#Argument slug NEEDED
 
 #from urllib.request import urlopen as ureq
 from bs4 import BeautifulSoup as soup
@@ -39,8 +39,8 @@ desc = htmlsoup.find("div", {"class":"anime-synopsis"})
 
 #data = json.loads(str(htmlsoup))
 
-print(str(poster))
-print(str(desc.text))
+print(poster)
+print(desc.text)
 
 c.close()
 conn.close()
