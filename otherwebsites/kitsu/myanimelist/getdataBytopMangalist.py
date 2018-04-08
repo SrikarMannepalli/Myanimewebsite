@@ -19,10 +19,10 @@ maluser = "https://myanimelist.net/search/prefix.json?type=user&keyword=boku&v=1
 conn = sqlite3.connect('manga.db')
 c = conn.cursor()
 
-c.execute("CREATE TABLE IF NOT EXISTS manga (id INT PRIMARY KEY, name TEXT, description TEXT, imglink TEXT, shortimg TEXT)")
+c.execute("CREATE TABLE IF NOT EXISTS manga (id INT PRIMARY KEY, name TEXT, description TEXT, imglink TEXT, shortimg TEXT, name_in_url TEXT)")
 #c.execute("ALTER TABLE manga ADD shortimg TEXT")
 
-for i in range(0,300,50): #UPTO 46100 is allowed
+for i in range(0,3000,50): #UPTO 46100 is allowed
     curr_url = "https://myanimelist.net/topmanga.php?limit=" + str(i)
     print(curr_url)
 
@@ -44,7 +44,7 @@ for i in range(0,300,50): #UPTO 46100 is allowed
         fetched = c.fetchall()
         print("Fetched from database", fetched)
         if fetched == []:
-            c.execute("INSERT INTO manga (id, name, shortimg) VALUES (?, ?, ?)" , (mal_id[4], mal_id[5], shortimg))
+            c.execute("INSERT INTO manga (id, name_in_url, shortimg) VALUES (?, ?, ?)" , (mal_id[4], mal_id[5], shortimg))
             #c.execute("UPDATE anime SET shortimg = ? WHERE id = ?" , (shortimg, mal_id[4]))        
             conn.commit()
             print('INSTERTED', url)
