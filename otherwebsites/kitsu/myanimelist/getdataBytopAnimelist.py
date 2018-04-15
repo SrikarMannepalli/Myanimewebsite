@@ -19,10 +19,10 @@ maluser = "https://myanimelist.net/search/prefix.json?type=user&keyword=boku&v=1
 conn = sqlite3.connect('anime.db')
 c = conn.cursor()
 
-c.execute("CREATE TABLE IF NOT EXISTS anime (id INT PRIMARY KEY, name TEXT, description TEXT, imglink TEXT, shortimg TEXT, name_in_url TEXT)")
+c.execute("CREATE TABLE IF NOT EXISTS anime (id INT PRIMARY KEY, name TEXT, description TEXT, imglink TEXT, shortimg TEXT, name_in_url TEXT, details TEXT)")
 #c.execute("ALTER TABLE anime ADD name_in_url TEXT")
 
-for i in range(500,1000,50): #UPTO 14150 is allowed
+for i in range(0,100,50): #UPTO 14150 is allowed
     curr_url = "https://myanimelist.net/topanime.php?limit=" + str(i)
 
     soup_html = requests.get(curr_url).text
@@ -32,6 +32,11 @@ for i in range(500,1000,50): #UPTO 14150 is allowed
     print("i :", i)
     for anime in div:
         an = anime.find("td",{"class":"title"})
+        name = an.findAll("a")[1].text        
+        try:
+            details = an.find("div",{"class":"information"}).text
+        except Exception:
+            details = None
         url = an.a["href"]
         #print(str(an.a.img['data-src']))
         shortimg = str(an.a.img['data-src'])
@@ -42,7 +47,7 @@ for i in range(500,1000,50): #UPTO 14150 is allowed
         fetched = c.fetchall()
         print("Fetched from database", fetched)
         if fetched == []:
-            c.execute("INSERT INTO anime (id, name_in_url, shortimg) VALUES (?, ?, ?)" , (mal_id[4], mal_id[5], shortimg))
+            c.execute("INSERT INTO anime (id, name, name_in_url, shortimg, details) VALUES (?, ?, ?, ?, ?)" , (mal_id[4], name, mal_id[5], shortimg, details))
             #c.execute("UPDATE anime SET shortimg = ? WHERE id = ?" , (shortimg, mal_id[4]))        
             conn.commit()
             print('INSTERTED', url)

@@ -23,7 +23,7 @@ for mal_id in c.fetchall():
     c.execute("SELECT imglink, description FROM anime WHERE id = ?", [mal_id[0]])
     out = c.fetchone()
 	
-    if out[0] != None and out[1] != None:
+    if out[0] != None and out[0] != "" and out[1] != None and out[1] != "":
         print(mal_id[0])
     else:    
         curr_url = "https://myanimelist.net/anime/" + str(mal_id[0])
@@ -34,14 +34,16 @@ for mal_id in c.fetchall():
 
 
         #print(str(htmlsoup.find("meta", {"property" : "og:url"})["content"].split("/")[5]))
-        print(str(htmlsoup.find("table", {"width" : "100%"}).div.div.a.img["src"]))
-        #print(str(htmlsoup.find("span", {"itemprop":"description"}).text))
+      #  print(str(htmlsoup.find("table", {"width" : "100%"}).div.div.a.img["src"]))
+      #  print(htmlsoup.find("span", {"itemprop":"description"}).text)
         try:
             image = str(htmlsoup.find("table", {"width" : "100%"}).div.div.a.img["src"])
+            print(image)
         except Exception:
             image = None
         try:
-            desc = str(htmlsoup.find("span", {"itemprop":"description"}).text)
+            desc = htmlsoup.find("span", {"itemprop":"description"}).text
+            print(desc)
         except Exception:
             desc = None
 
