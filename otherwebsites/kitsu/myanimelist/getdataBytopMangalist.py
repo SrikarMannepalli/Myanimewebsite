@@ -19,10 +19,10 @@ maluser = "https://myanimelist.net/search/prefix.json?type=user&keyword=boku&v=1
 conn = sqlite3.connect('manga.db')
 c = conn.cursor()
 
-c.execute("CREATE TABLE IF NOT EXISTS manga (id INT PRIMARY KEY, name TEXT, description TEXT, imglink TEXT, shortimg TEXT, name_in_url TEXT, details TEXT)")
+c.execute("CREATE TABLE IF NOT EXISTS manga (id INT PRIMARY KEY, name TEXT, description TEXT, imglink TEXT, shortimg TEXT, name_in_url TEXT, details TEXT, rating INT)")
 #c.execute("ALTER TABLE manga ADD shortimg TEXT")
 
-for i in range(0,3000,50): #UPTO 46100 is allowed
+for i in range(0,200,50): #UPTO 46100 is allowed
     curr_url = "https://myanimelist.net/topmanga.php?limit=" + str(i)
     print(curr_url)
 
@@ -41,7 +41,7 @@ for i in range(0,3000,50): #UPTO 46100 is allowed
         except Exception:
             details = None
         #print(str(an.a.img['data-src']))
-        shortimg = str(an.a.img['data-src'])
+        shortimg = an.a.img['data-src']
         #print(shortimg, url)
         mal_id = url.split("/")
         #print("mal_id = ", mal_id[4], "name = ", mal_id[5])

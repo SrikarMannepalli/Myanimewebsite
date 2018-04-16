@@ -34,15 +34,17 @@ for mal_id in c.fetchall():
         htmlsoup = soup(resp.text , "html.parser")
 
 
-        #print(str(htmlsoup.find("meta", {"property" : "og:url"})["content"].split("/")[5]))
-        print(str(htmlsoup.find("table", {"width" : "100%"}).div.div.a.img["src"]))
-        #print(str(htmlsoup.find("span", {"itemprop":"description"}).text))
+        #print(htmlsoup.find("meta", {"property" : "og:url"})["content"].split("/")[5])
+        print(htmlsoup.find("table", {"width" : "100%"}).div.div.a.img["src"])
+        #print(htmlsoup.find("span", {"itemprop":"description"}).text)
         try:
-            image = str(htmlsoup.find("table", {"width" : "100%"}).div.div.a.img["src"])
+            image = htmlsoup.find("table", {"width" : "100%"}).div.div.a.img["src"]
+            print(image)
         except Exception:
             image = None
         try:
-            desc = str(htmlsoup.find("span", {"itemprop":"description"}).text)
+            desc = htmlsoup.find("span", {"itemprop":"description"}).text
+            print(desc)
         except Exception:
             desc = None
 
