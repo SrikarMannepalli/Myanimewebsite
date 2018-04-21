@@ -60,7 +60,7 @@ for item in animelist:
         role = link.small.text
         #if this is character
         dtype = url.split('/')[-3]
-        if dtype == "character":    
+        if dtype == "character":
             print(name)
             #print(id)
             #print(name_in_url)
@@ -72,13 +72,13 @@ for item in animelist:
             if exists != None and exists != "":
                 print("it exists " + id)
             else:        
-                c.execute("INSERT INTO characters (id, name, name_in_url, shortimg) VALUES (?, ?, ?, ?)", (id, name, name_in_url, shortimg))
+                c.execute("INSERT INTO characters (id, name, name_in_url, shortimg, role) VALUES (?, ?, ?, ?, ?)", (id, name, name_in_url, shortimg, role))
                 conn.commit()
                 print(name + " INSERTED")
         elif dtype == "people":
             print("Staff I Guess")
         else:
-            print("H>>>>>M")    
+            print("H>>>>>M")
     
         
         

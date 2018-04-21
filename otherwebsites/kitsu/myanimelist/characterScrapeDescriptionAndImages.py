@@ -13,18 +13,7 @@ malmanga = "https://myanimelist.net/search/prefix.json?type=manga&keyword=boku&v
 malcharacter = "https://myanimelist.net/search/prefix.json?type=character&keyword=boku&v=1"
 maluser = "https://myanimelist.net/search/prefix.json?type=user&keyword=boku&v=1"
 
-conn = sqlite3.connect('anime.db')
-c = conn.cursor()
-
-c.execute("SELECT id FROM anime")
-
-animelist = c.fetchall()
-
-c.close()
-conn.close()
-
-
-# Connect to characters.db 
+# Connect to characters.db
 # IMPORTANT Characters are not different from anime and manga 
 # Need to scarpe 
 # Image from https://myanimelist.net/character/40/ eg. https://myanimelist.cdn-dena.com/images/characters/9/310307.jpg
@@ -35,39 +24,105 @@ conn.close()
 
 
 conn = sqlite3.connect('characters.db')
+conn.text_factory = str
+c = conn.cursor()
 
+c.execute("SELECT id FROM characters")
+characters_list = c.fetchall()
 
-
-for mal_id in animelist:
+for id in characters_list:
     
-    c.execute("SELECT imglink, description FROM anime WHERE id = ?", [mal_id[0]])
+    c.execute("SELECT imglink, description FROM characters WHERE id = ?", [id[0]])
     out = c.fetchone()
 	
-    if out[0] != None and out[1] != None:
-        print(mal_id[0])
-    else:    
-        curr_url = "https://myanimelist.net/anime/" + str(mal_id[0])
+    if out[0] != None and out[0] != "" and out[1] != None and out[1] != "":
+        print(id[0])
+    else:
+        curr_url = "https://myanimelist.net/character/" + str(id[0])
         print("curr_url",curr_url)
 
         soup_html = requests.get(curr_url).text
-
         htmlsoup = soup(soup_html , "html.parser")
 
 
         #print(str(htmlsoup.find("meta", {"property" : "og:url"})["content"].split("/")[5]))
-        print(str(htmlsoup.find("table", {"width" : "100%"}).div.div.a.img["src"]))
-        #print(str(htmlsoup.find("span", {"itemprop":"description"}).text))
+        info_table = htmlsoup.find("table", {"width" : "100%"})
+        mappings_table = htmlsoup.find("table", {"width" : "100%"}).td
+        desc_page = info_table.find("td",{"style":"padding-left: 5px;"})
+
         try:
-            image = str(htmlsoup.find("table", {"width" : "100%"}).div.div.a.img["src"])
+            image = str(mappings_table.div.a.img["src"])
         except Exception:
             image = None
-        try:
-            desc = str(htmlsoup.find("span", {"itemprop":"description"}).text)
-        except Exception:
-            desc = None
 
-        c.execute("UPDATE anime SET imglink = ? , description = ? WHERE id = ?", (image , desc , mal_id[0]))
+        animeography = mappings_table.findAll("table")[0]
+        mangaography = mappings_table.findAll("table")[1]
+        
+        for anime_mapping in animeography.findAll("div",{"class":"picSurround"}):
+            try:
+                print("anime id",anime_mapping.a['href'].split('/')[-2])
+            except Exception:
+                print("animeography not found")
+        
+        for manga_mapping in mangaography.findAll("div",{"class":"picSurround"}):
+            try:
+                print("manga id",manga_mapping.a['href'].split('/')[-2])
+            except Exception:
+                print("mangaography not found")
+        
+    
+        #Remove all the other divs and get only the character's details
+        try:
+            desc_page.find("div",{"id":"horiznav_nav"}).decompose()
+            desc_page.find("div",{"class":"breadcrumb"}).decompose()
+        except Exception:
+            print("error in removing nav bar or breadcrumb")
+
+        try:
+            for el in desc_page.findAll("table",{"width":"100%"}):
+                el.decompose()
+        except Exception:
+            print("error in removing voice actor tables")
+        
+        try:
+            desc_page.find("h2").decompose()
+        except Exception:
+            print("error in removing feautred articles heading")
+        
+        try:    
+            desc_page.find("div",{"class":"detail-page-featured-article"}).decompose()
+        except Exception:
+            print("error in removing featured-articles div")
+        
+        try:
+            desc_page.find("div",{"class":"mauto"}).decompose()
+        except Exception:
+            print("error in removing mauto ads div I guess")
+
+        try:
+            for el in desc_page.findAll("div",{"class":"normal_header"}):
+                if el.text == "Voice Actors":
+                    el.decompose()
+        except Exception:
+            print("error in removing voice actors heading")
+
+        #Grab japanesename and english names
+        try:
+            japanese_name = desc_page.find("div",{"class":"normal_header"}).span.small.text
+            desc_page.find("div",{"class":"normal_header"}).span.decompose()
+            english_name = desc_page.find("div",{"class":"normal_header"}).text
+            if english_name != None and english_name != "":
+                desc_page.find("div",{"class":"normal_header"}).decompose()
+        except Exception:
+            japanese_name = None
+            english_name = None
+            print("japanese or eng name failed")
+
+        print(japanese_name,english_name)
+        desc = desc_page.encode_contents()
+        c.execute("UPDATE characters SET imglink = ? , description = ? WHERE id = ?", (image , desc, id[0]))
         conn.commit()
+        print(image, desc)
 
 
 c.close()

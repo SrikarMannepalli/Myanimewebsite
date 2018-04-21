@@ -19,7 +19,7 @@ maluser = "https://myanimelist.net/search/prefix.json?type=user&keyword=boku&v=1
 conn = sqlite3.connect('manga.db')
 c = conn.cursor()
 
-c.execute("CREATE TABLE IF NOT EXISTS manga (id INT PRIMARY KEY, name TEXT, description TEXT, imglink TEXT, shortimg TEXT, name_in_url TEXT, details TEXT, rating INT)")
+c.execute("CREATE TABLE IF NOT EXISTS manga (id INT PRIMARY KEY, name TEXT, description TEXT, imglink TEXT, shortimg TEXT, name_in_url TEXT, details TEXT, rating REAL, votes INT)")
 #c.execute("ALTER TABLE manga ADD shortimg TEXT")
 
 for i in range(0,200,50): #UPTO 46100 is allowed
