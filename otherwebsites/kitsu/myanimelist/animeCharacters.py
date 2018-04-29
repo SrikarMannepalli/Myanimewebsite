@@ -30,7 +30,7 @@ conn.close()
 conn = sqlite3.connect('characters.db')
 c = conn.cursor()
 #Create table for the first time
-c.execute("CREATE TABLE IF NOT EXISTS characters (id INT, name TEXT, description TEXT, name_in_url TEXT, imglink TEXT, shortimg TEXT, role TEXT, fav_count INT, source_type BIT, source_id INT)")
+c.execute("CREATE TABLE IF NOT EXISTS characters (id INT, name TEXT, description TEXT, name_in_url TEXT, imglink TEXT, shortimg TEXT, role TEXT, fav_count INT)")
 conn.commit()
 
 for item in animelist:
