@@ -1,3 +1,8 @@
+
+
+#To create a database called animecharacters.db which contains all characters from a particular anime 
+
+
 import requests
 from bs4 import BeautifulSoup as soup
 import sqlite3, time
@@ -25,12 +30,12 @@ animelist = c.fetchall()
 c.close()
 conn.close()
 
-#Connect to characters.db and add shortimg, id , name, name_in_url
+#Connect to animecharacters.db and add shortimg, id , name, name_in_url
 
-conn = sqlite3.connect('characters.db')
+conn = sqlite3.connect('animecharacters.db')
 c = conn.cursor()
 #Create table for the first time
-c.execute("CREATE TABLE IF NOT EXISTS characters (id INT, name TEXT, description TEXT, name_in_url TEXT, imglink TEXT, shortimg TEXT, role TEXT, fav_count INT)")
+c.execute("CREATE TABLE IF NOT EXISTS mappings (anime_id INT, character_id INT)")
 conn.commit()
 
 for item in animelist:
@@ -50,31 +55,25 @@ for item in animelist:
 
     characters = content.findAll("table", recursive=False)
     for character in characters:
-        shortimg = character.find("td", {"valign":"top"})
-        shortimg = shortimg.img['data-src']
         link = character.findAll("td", {"valign":"top"})[1]
         url = link.a['href']
-        name = link.a.text
-        name_in_url = url.split('/')[-1]
         id = url.split('/')[-2]
-        role = link.small.text
-        #if this is character
         dtype = url.split('/')[-3]
         if dtype == "character":
-            print(name)
-            #print(id)
+            print(id)
             #print(name_in_url)
             #print(role)
             
-            #Insert into characters if not found
-            c.execute("SELECT name FROM characters WHERE id = ?", [id])
+            #Insert into mappings if not found
+            c.execute("SELECT * FROM mappings WHERE anime_id = ? AND character_id = ?", (item[0], id))
             exists = c.fetchone()
-            if exists != None and exists != "":
+
+            if exists != None and exists != "" and exists != []:
                 print("it exists " + id)
             else:        
-                c.execute("INSERT INTO characters (id, name, name_in_url, shortimg, role) VALUES (?, ?, ?, ?, ?)", (id, name, name_in_url, shortimg, role))
+                c.execute("INSERT INTO mappings (anime_id, character_id) VALUES (?, ?)", (item[0], id))
                 conn.commit()
-                print(name + " INSERTED")
+                print(str(id) + " INSERTED FOR " + str(item[0]))
         elif dtype == "people":
             print("Staff I Guess")
         else:
