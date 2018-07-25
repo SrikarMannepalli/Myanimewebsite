@@ -1,4 +1,4 @@
-anime = [
+[
 {
 "name" : "07-ghost" ,
 "title" : "07-Ghost" ,
@@ -3985,7 +3985,7 @@ anime = [
 
 "2" : "https://twist.moe/anime/bokunopico/Boku no Pico - OVA02 - Pico & Chico.mp4",
 
-"3" : "https://twist.moe	/anime/bokunopico/Boku no Pico - OVA03 - Pico x CoCo x Chico.mp4",
+"3" : "https://twist.moe/anime/bokunopico/Boku no Pico - OVA03 - Pico x CoCo x Chico.mp4",
 
 "total" : 3
 },
@@ -19856,7 +19856,7 @@ anime = [
 {
 "name" : "kuroshitsuji-book-of-circus" ,
 "title" : "Kuroshitsuji: Book of Circus" ,
-"alt" : "Black Butler: Book of Circus	" ,
+"alt" : "Black Butler: Book of Circus" ,
 "1" : "https://twist.moe/anime/blackbutlerbookofcircus/blackbutlerbookofcircus-001.mp4",
 
 "2" : "https://twist.moe/anime/blackbutlerbookofcircus/blackbutlerbookofcircus-002.mp4",
@@ -37909,4 +37909,4 @@ anime = [
 
 "total" : 1
 }
-];
+]
