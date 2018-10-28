@@ -1,6 +1,6 @@
 def Articles():
 	
-	articles = [
+	article = [
 		{
 			id : 1,
 			title : 'Article one',
@@ -19,4 +19,4 @@ def Articles():
 
 	]
 
-	return articles
+	return article
